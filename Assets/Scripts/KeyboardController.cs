@@ -6,8 +6,9 @@ public class KeyboardController : Controller
 {
     public KeyCode moveForward;
     public KeyCode moveBackward;
-    public KeyCode turnClockwise;
-    public KeyCode turnCounterclockwise;
+    public KeyCode turnRight;
+    public KeyCode turnLeft;
+    public KeyCode shoot;
 
 
     // Start is called before the first frame update
@@ -19,9 +20,34 @@ public class KeyboardController : Controller
     // Update is called once per frame
     public override void Update()
     {
-        if(Input.GetKey(moveForward))
+        MakeDecisions();
+    }
+
+    public override void MakeDecisions()
+    {
+        if (Input.GetKey(moveForward))
         {
             Debug.Log("Forward");
         }
+        if (Input.GetKey(moveBackward))
+        {
+            Debug.Log("Backward");
+        }
+        if (Input.GetKey(turnRight))
+        {
+            pawn.TurnRight();
+        }
+        if (Input.GetKey(turnLeft))
+        {
+            Debug.Log("CCW");
+        }
+        if (Input.GetKeyDown(shoot))
+        {
+            Debug.Log("pew");
+        }
+    }
+    public override void MoveForward()
+    {
+
     }
 }
