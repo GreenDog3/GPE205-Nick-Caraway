@@ -27,11 +27,11 @@ public class KeyboardController : Controller
     {
         if (Input.GetKey(moveForward))
         {
-            Debug.Log("Forward");
+            pawn.MoveForward();
         }
         if (Input.GetKey(moveBackward))
         {
-            Debug.Log("Backward");
+            pawn.MoveBackward();
         }
         if (Input.GetKey(turnRight))
         {
@@ -39,7 +39,7 @@ public class KeyboardController : Controller
         }
         if (Input.GetKey(turnLeft))
         {
-            Debug.Log("CCW");
+            pawn.TurnLeft();
         }
         if (Input.GetKeyDown(shoot))
         {

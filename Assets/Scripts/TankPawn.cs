@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class TankPawn : Pawn
 {
-    public float turnSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        mover = GetComponent<Mover>();
     }
 
     // Update is called once per frame
@@ -20,11 +19,13 @@ public class TankPawn : Pawn
 
     public override void MoveForward()
     {
+        mover.MoveForward(moveSpeed);
         base.MoveForward();
     }
 
     public override void MoveBackward()
     {
+        mover.MoveForward(-moveSpeed);
         base.MoveBackward();
     }
 
