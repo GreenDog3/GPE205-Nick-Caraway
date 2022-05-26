@@ -43,7 +43,7 @@ public class KeyboardController : Controller
         }
         if (Input.GetKeyDown(shoot))
         {
-            Debug.Log("pew");
+            pawn.Shoot();
         }
     }
     public override void MoveForward()

@@ -350,14 +350,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.6955787, y: -0, z: -0, w: 0.7184499}
-  m_LocalPosition: {x: 0, y: 44, z: -3}
+  m_LocalRotation: {x: 0.034606986, y: -0, z: -0, w: 0.99940103}
+  m_LocalPosition: {x: 0, y: 9.5, z: -39.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 88.147, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.966, y: 0, z: 0}
 --- !u!1 &1007669178
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
   moveBackward: 274
   turnRight: 275
   turnLeft: 276
-  shoot: 271
+  shoot: 32
 --- !u!114 &1150311487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,8 +490,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7799107b7700a4d86590e76791c306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  turnSpeed: 10
+  moveSpeed: 10
+  turnSpeed: 5
+  bulletPrefab: {fileID: 7026549333766659454, guid: 9f2a60e637fb1144cbd47c1b6647838e, type: 3}
+  shooter: {fileID: 0}
+  shootForce: 300
+  damageDone: 0
+  shootOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &1150311491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,6 +538,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6038577
   m_Center: {x: 0.0078088045, y: 0.5, z: 0.111234784}
+--- !u!114 &1150311500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150311485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 480e8dfd44de0174fb2f85859fcca0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1722662768
 GameObject:
   m_ObjectHideFlags: 0
