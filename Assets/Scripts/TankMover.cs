@@ -25,6 +25,6 @@ public class TankMover : Mover
 
     public override void Turn(float speed)
     { //turns the tank
-        transform.Rotate(0, speed, 0);
+        transform.Rotate(0, speed * Time.deltaTime, 0);
     }
 }

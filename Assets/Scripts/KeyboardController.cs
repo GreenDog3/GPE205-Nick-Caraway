@@ -14,7 +14,8 @@ public class KeyboardController : Controller
     // Start is called before the first frame update
     public override void Start()
     {
-        
+        //Add itself to players
+        GameManager.instance.players.Add(this);
     }
 
     // Update is called once per frame
@@ -49,5 +50,10 @@ public class KeyboardController : Controller
     public override void MoveForward()
     {
 
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.instance.players.Remove(this);
     }
 }
