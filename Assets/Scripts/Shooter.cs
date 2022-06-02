@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    public float projectileDespawnTime;
 
-
-   public void Shoot(GameObject bulletPrefab, float shootForce, float damageDone, Vector3 offset, Pawn shooter)
+   public void Shoot(GameObject bulletPrefab, float shootForce, float damageDone, Transform offset, Pawn shooter)
     {
         // make bullet
-        GameObject theBullet = Instantiate(bulletPrefab, transform.position + offset, transform.rotation);
+        GameObject theBullet = Instantiate(bulletPrefab, offset.position, transform.rotation);
         //gib data
         Projectile projectile = theBullet.GetComponent<Projectile>();
 
@@ -27,5 +27,6 @@ public class Shooter : MonoBehaviour
         {
             bulletRb.AddForce(transform.forward * shootForce);
         }
+        Destroy(theBullet, projectileDespawnTime);
     }
 }

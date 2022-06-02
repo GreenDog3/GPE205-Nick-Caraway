@@ -9,8 +9,9 @@ public class TankPawn : Pawn
     public Shooter shooter;
     public float shootForce;
     public float damageDone;
-    public Vector3 shootOffset;
-    
+    public Transform shootPoint;
+    private float nextShootTime;
+    public float timeBetweenShots;
 
 
     // Start is called before the first frame update
@@ -18,6 +19,9 @@ public class TankPawn : Pawn
     {
         mover = GetComponent<Mover>();
         shooter = GetComponent<Shooter>();
+
+        //set next shoot time
+        nextShootTime = Time.time + timeBetweenShots;
     }
 
     // Update is called once per frame
@@ -52,6 +56,14 @@ public class TankPawn : Pawn
 
     public override void Shoot()
     {
-        shooter.Shoot(bulletPrefab, shootForce, damageDone, shootOffset, this);
+        if (Time.time >= nextShootTime)
+        {
+            //if yes, shoot
+            shooter.Shoot(bulletPrefab, shootForce, damageDone, shootPoint, this);
+            //set new time
+            nextShootTime = Time.time + timeBetweenShots;
+
+        }
+        
     }
 }
