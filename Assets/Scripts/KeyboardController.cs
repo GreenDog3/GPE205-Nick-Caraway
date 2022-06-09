@@ -47,10 +47,6 @@ public class KeyboardController : Controller
             pawn.Shoot();
         }
     }
-    public override void MoveForward()
-    {
-
-    }
 
     public void OnDestroy()
     {

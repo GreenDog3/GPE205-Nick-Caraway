@@ -43,4 +43,9 @@ public class Pawn : MonoBehaviour
     {
 
     }
+
+    public virtual void TurnTowards(Vector3 targetPosition)
+    {
+
+    }
 }
