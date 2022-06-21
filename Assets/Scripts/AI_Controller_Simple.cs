@@ -25,10 +25,15 @@ public class AI_Controller_Simple : AI_Controller
         {
             case AIStates.Idle:
                 DoIdleState();
-                if (IsTimePassed(3))
+                if (IsTimePassed(1))
                 {
-                    ChangeState(AIStates.Chase);
+                    ChangeState(AIStates.Patrol);
                 }
+                break;
+
+            case AIStates.Patrol:
+                DoPatrolState();
+                //stay in patrol FOREVER! MUAUAHAHHAHHAHHAHAHHA
                 break;
             case AIStates.Chase:
                 DoChaseState();

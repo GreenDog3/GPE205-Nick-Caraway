@@ -74,6 +74,6 @@ public class TankPawn : Pawn
         //find quaternion needed to look at that vector
         Quaternion look = Quaternion.LookRotation(vectorToTargetPosition, transform.up);
         //change rotation to be slightly down that quaternion
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnSpeed);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnSpeed*Time.deltaTime);
     }
 }
