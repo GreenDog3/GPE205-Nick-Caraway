@@ -8,7 +8,7 @@ public class TankMover : Mover
     // Start is called before the first frame update
     void Start()
     {
-        //load component
+        //loading the component as a suprise tool that will help us later
         rigidbodyComponent = GetComponent<Rigidbody>();
     }
 
@@ -18,13 +18,14 @@ public class TankMover : Mover
         
     }
 
-    public override void MoveForward(float speed)
-    {
-        rigidbodyComponent.MovePosition(transform.position + (transform.forward * (speed * Time.deltaTime)));
+    public override void Move(Vector3 direction, float speed)
+    { //Moves the tank forward at a certain speed per second
+        Vector3 moveVector = direction.normalized * speed * Time.deltaTime;
+        rigidbodyComponent.MovePosition(rigidbodyComponent.position + moveVector);
     }
 
     public override void Turn(float speed)
-    { //turns the tank
+    { //Turns the tank at a certain speed per second
         transform.Rotate(0, speed * Time.deltaTime, 0);
     }
 }

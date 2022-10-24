@@ -7,7 +7,6 @@ public class Projectile : MonoBehaviour
     public float damageDone;
     public Pawn owner;
 
-
     public void OnTriggerEnter(Collider other)
     {
         Health otherHealth = other.gameObject.GetComponent<Health>();

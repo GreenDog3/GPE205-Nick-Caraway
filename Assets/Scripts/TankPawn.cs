@@ -5,75 +5,51 @@ using UnityEngine;
 public class TankPawn : Pawn
 {
 
-    public GameObject bulletPrefab;
-    public Shooter shooter;
-    public float shootForce;
-    public float damageDone;
-    public Transform shootPoint;
-    private float nextShootTime;
-    public float timeBetweenShots;
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        mover = GetComponent<Mover>();
-        shooter = GetComponent<Shooter>();
-
-        //set next shoot time
+       base.Start();
+        // TODO: write funny comment here
         nextShootTime = Time.time + timeBetweenShots;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update() 
     {
-        
+        base.Update();
     }
 
+    
     public override void MoveForward()
-    {
-        mover.MoveForward(moveSpeed);
-        base.MoveForward();
+    { 
+        Debug.Log("Moving Forward");
+        //Forwards is just positive backwards.
+        mover.Move(transform.forward, moveSpeed);
     }
 
     public override void MoveBackward()
-    {
-        mover.MoveForward(-moveSpeed);
-        base.MoveBackward();
+    { //Backwards is just negative forwards.
+        mover.Move(transform.forward, -moveSpeed);
     }
 
     public override void TurnRight()
-    {
+    { //I don't have anything funny to say for turning right. I just like typing comments because it means I can pretend to work harder without having to actually put in more effort. Besides, it's better than under-commenting.
         mover.Turn(turnSpeed);
-        base.TurnRight();
     }
 
     public override void TurnLeft()
-    {
+    { //I guess "TurnCounterclockwise" would be more accurate, but that's way too many letters for me to type. Ignore that this file will probably end up more comment than code by the end of this.
         mover.Turn(-turnSpeed);
-        base.TurnLeft();
     }
 
     public override void Shoot()
-    {
+    { //We must not shoot until we are ready!
         if (Time.time >= nextShootTime)
         {
-            //if yes, shoot
+            //If it is shoot time, SHOOT!
             shooter.Shoot(bulletPrefab, shootForce, damageDone, shootPoint, this);
-            //set new time
+            //When will we be ready to shoot again?
             nextShootTime = Time.time + timeBetweenShots;
-
         }
-        
-    }
-
-    public override void TurnTowards( Vector3 targetPosition )
-    {
-        //find the vector to the target from our location
-        Vector3 vectorToTargetPosition = targetPosition - transform.position;
-        //find quaternion needed to look at that vector
-        Quaternion look = Quaternion.LookRotation(vectorToTargetPosition, transform.up);
-        //change rotation to be slightly down that quaternion
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, look, turnSpeed*Time.deltaTime);
     }
 }

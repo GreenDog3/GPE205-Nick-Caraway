@@ -4,32 +4,37 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
-    public List<KeyboardController> players;
+    public List<PlayerController> players;
     public GameObject pawnPrefab;
 
-    // Start is called before the first frame update
+   
     void Awake()
     {
         if (instance == null)
-        {
+        { //If there is no GameManager, create it
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
-        {
+        { //If there is a GameManager, THERE CAN ONLY BE ONE!
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        //spawns a player when the game begins. Otherwise, it wouldn't be much of a game.
+        SpawnPlayer(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //p is for player and d is for debug
+        //This spawns a new player
         if (Input.GetKeyDown(KeyCode.P))
         {
-            SpawnPlayer(0);
+            SpawnPlayer(1);
         }
     }
 
@@ -37,12 +42,15 @@ public class GameManager : MonoBehaviour
     {
         GameObject newPawn = Instantiate(pawnPrefab, Vector3.zero, Quaternion.identity);
         Pawn newPawnScript = newPawn.GetComponent<Pawn>();
-        if (newPawnScript != null)
-        {
-            if (players.Count > playerNumber)
+        if (players.Count > playerNumber)
             {
-                players[playerNumber].pawn = newPawnScript;
+                LinkPawnAndController(newPawnScript, players[playerNumber]);
             }
-        }
+    }
+
+    public void LinkPawnAndController(Pawn pawn, Controller controller)
+    {
+        pawn = pawn;
+        controller = controller;
     }
 }

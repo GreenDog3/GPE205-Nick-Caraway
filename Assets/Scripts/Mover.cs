@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Mover : MonoBehaviour
 {
-    public abstract void MoveForward(float speed);
+    public abstract void Move(Vector3 direction, float speed);
     public abstract void Turn(float speed);
-
 }

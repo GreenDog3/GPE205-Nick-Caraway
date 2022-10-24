@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
-    protected Mover mover;
     public float moveSpeed;
     public float turnSpeed;
+    public GameObject bulletPrefab;
+    public Shooter shooter;
+    public Mover mover;
+    public float shootForce;
+    public float damageDone;
+    public Transform shootPoint;
+    public float nextShootTime;
+    public float timeBetweenShots;
+
     // Start is called before the first frame update
-    void Start()
+   public virtual void Start()
     {
-        
+         mover = GetComponent<Mover>();
+         shooter = GetComponent<Shooter>();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         
     }
@@ -29,23 +38,18 @@ public class Pawn : MonoBehaviour
 
     }
 
-    public virtual void TurnRight()
+    public virtual void TurnLeft()
     {
 
     }
 
-    public virtual void TurnLeft()
+    public virtual void TurnRight()
     {
 
     }
 
     public virtual void Shoot()
     {
-
-    }
-
-    public virtual void TurnTowards(Vector3 targetPosition)
-    {
-
+        
     }
 }
