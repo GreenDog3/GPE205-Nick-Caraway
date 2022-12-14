@@ -21,14 +21,16 @@ public class PlayerController : Controller
     // Update is called once per frame
     void Update()
     {
-        MakeDecisions();
+        if (pawn != null)
+        {
+            MakeDecisions();
+        }
     }
 
     public override void MakeDecisions() //side note, why is it so hard to spell decisions? Is that just me?
     {
         if(Input.GetKey(moveForward)) //these blocks of code remind me of making a Scratch project. Just replacing the blocks with typing it out myself.
         {
-            Debug.Log("Pressed");
             pawn.MoveForward();
         }
         if(Input.GetKey(moveBackward))

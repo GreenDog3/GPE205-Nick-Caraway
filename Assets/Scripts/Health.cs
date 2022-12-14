@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         myPawn = GetComponent<TankPawn>();
+        currentHealth = maxHealth;
     }
 
     public void TakeDamage(float amount, Pawn owner)
