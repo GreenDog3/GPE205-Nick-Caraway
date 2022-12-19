@@ -7,11 +7,13 @@ public class Health : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     public Pawn myPawn;
+    public Controller myController;
 
     // Start is called before the first frame update
     void Start()
     {
-        myPawn = GetComponent<TankPawn>();
+        myPawn = GetComponent<Pawn>();
+        myController = GetComponent<Controller>();
         currentHealth = maxHealth;
     }
 
@@ -37,6 +39,7 @@ public class Health : MonoBehaviour
 
     public void Die(Pawn killer)
     { //TODO: Give points to the killer
+        Destroy(myController);
         Destroy(gameObject);
     }
 }

@@ -48,6 +48,6 @@ MonoBehaviour:
   currentState: 0
   timeEnteredCurentState: 0
   AITarget: {fileID: 0}
-  hearingDistance: 10
+  hearingDistance: 20
   waypoints: []
   currentWaypoint: 0

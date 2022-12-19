@@ -9,6 +9,7 @@ public class AIController_Goomba : AIController
     {
         //Start by Idling
         ChangeState(AIStates.Idle);
+        GameManager.instance.enemies.Add(this);
     }
 
     // Update is called once per frame
@@ -17,6 +18,10 @@ public class AIController_Goomba : AIController
         if (pawn != null)
         {
             MakeDecisions();
+        }
+        else
+        {
+            Destroy(this);
         }
         
     }
@@ -62,5 +67,9 @@ public class AIController_Goomba : AIController
                 break;
 
         }
+    }
+    public void OnDestroy()
+    {
+        GameManager.instance.enemies.Remove(this);
     }
 }

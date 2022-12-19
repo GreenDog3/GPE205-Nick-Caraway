@@ -37,13 +37,13 @@ public abstract class AIController : Controller
     public virtual void DoTargetPlayer1State()
     {
         // If the GameManager exists
-        if (GameManager.instance != null) 
+        if (GameManager.instance != null)
         {
             // And the array of players exists
-            if (GameManager.instance.players != null) 
+            if (GameManager.instance.players != null)
             {
                 // And there are players in it
-                if (GameManager.instance.players.Count > 0) 
+                if (GameManager.instance.players.Count > 0)
                 {
                     //Then target the gameObject of the pawn of the first player controller in the list
                     AITarget = GameManager.instance.players[0].pawn.gameObject;
@@ -54,6 +54,7 @@ public abstract class AIController : Controller
 
     public virtual GameObject GetNearestPlayer()
     {
+
         //assume that p1 is the closest
         GameObject nearestPlayer = GameManager.instance.players[0].pawn.gameObject;
         float nearestPlayerDistance = Vector3.Distance(pawn.transform.position, nearestPlayer.transform.position);
@@ -95,7 +96,20 @@ public abstract class AIController : Controller
 
     public virtual void DoChangeTargetState()
     {
-        AITarget = GetNearestPlayer();
+        // If the GameManager exists
+        if (GameManager.instance != null) 
+        {
+            // And the array of players exists
+            if (GameManager.instance.players != null) 
+            {
+                // And there are players in it
+                if (GameManager.instance.players.Count > 0) 
+                {
+                    //Then target the gameObject of the pawn of the first player controller in the list
+                    AITarget = GetNearestPlayer();
+                }
+            }
+        }
     }
 
     public virtual void DoChaseState()
@@ -236,6 +250,8 @@ public abstract class AIController : Controller
 
    public bool IsCanHear(GameObject target)
     {
+        if (target != null)
+        {
         // Get the target's Noisemaker
         Noisemaker noiseMaker = target.GetComponent<Noisemaker>();
         // If they don't have one, they can't make noise, so return false
@@ -261,6 +277,8 @@ public abstract class AIController : Controller
             // Otherwise, we are too far away to hear them
             return false;
         }
+        }
+        return false;
     }
 
 }

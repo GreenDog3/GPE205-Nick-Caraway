@@ -15,7 +15,6 @@ public class PlayerController : Controller
     {
         //adds itself to the players list
         GameManager.instance.players.Add(this);
-        //GameManager.instance.players.Add(this);
     }
 
     // Update is called once per frame
@@ -24,6 +23,10 @@ public class PlayerController : Controller
         if (pawn != null)
         {
             MakeDecisions();
+        }
+        else
+        {
+            Destroy(this);
         }
     }
 

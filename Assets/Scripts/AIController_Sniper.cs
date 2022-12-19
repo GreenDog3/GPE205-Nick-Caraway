@@ -8,6 +8,8 @@ public class AIController_Sniper : AIController
     public override void Start()
     {
         //Start by idling
+        GameManager.instance.enemies.Add(this);
+        ChangeState(AIStates.Idle);
     }
 
     // Update is called once per frame
@@ -16,6 +18,10 @@ public class AIController_Sniper : AIController
         if (pawn != null)
         {
             MakeDecisions();
+        }
+        else
+        {
+            Destroy(this);
         }
     }
 
@@ -33,7 +39,7 @@ public class AIController_Sniper : AIController
                 }
                 break;
             case AIStates.ChooseTarget:
-                DoTargetPlayer1State();
+                DoChangeTargetState();
                 if (IsTimePassed(1))
                 {
                     if (IsCanHear(AITarget))
@@ -72,5 +78,10 @@ public class AIController_Sniper : AIController
                 break;
 
         }
+    }
+
+    public void OnDestroy()
+    {
+        GameManager.instance.enemies.Remove(this);
     }
 }

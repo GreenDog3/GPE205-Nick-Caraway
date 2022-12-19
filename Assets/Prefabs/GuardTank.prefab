@@ -65,7 +65,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2047350334232312856, guid: 5b13877a350a44d488110d814174fe64, type: 3}
       propertyPath: m_Name
-      value: EnemyTank
+      value: GuardTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431085364338425180, guid: 5b13877a350a44d488110d814174fe64, type: 3}
+      propertyPath: moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b13877a350a44d488110d814174fe64, type: 3}

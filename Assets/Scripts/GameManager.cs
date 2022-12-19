@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
     // Game Manager instance
     public static GameManager instance;
 
@@ -11,9 +12,11 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawnTransform;
     public Transform enemySpawnTransform;
     public List<Transform> arenaWaypoints;
+    public List<Transform> spawnLocations;
 
     // Lists
     public List<PlayerController> players;
+    public List<AIController> enemies;
 
     // Prefabs
     public GameObject tankPawnPrefab;
@@ -46,6 +49,24 @@ public class GameManager : MonoBehaviour
     {
         //spawns a player when the game begins. Otherwise, it wouldn't be much of a game.
         SpawnPlayer();
+
+        //Spawns one of each enemy at random spawn points
+        SpawnGoomba();
+        SpawnGuard();
+        SpawnSniper();
+        SpawnLeeroy();
+    }
+
+    public void SimulateStart()
+    {
+        //spawns a player when the game begins. Otherwise, it wouldn't be much of a game.
+        SpawnPlayer();
+
+        //Spawns one of each enemy at random spawn points
+        SpawnGoomba();
+        SpawnGuard();
+        SpawnSniper();
+        SpawnLeeroy();
     }
 
     // Update is called once per frame
@@ -54,22 +75,36 @@ public class GameManager : MonoBehaviour
         //This spawns a Goomba
         if (Input.GetKeyDown(KeyCode.G))
         {
+            enemySpawnTransform = RandomSpawnPoint();
             SpawnGoomba();
         }
         //This spawns a Guard
         if (Input.GetKeyDown(KeyCode.H))
         {
+            enemySpawnTransform = RandomSpawnPoint();
             SpawnGuard();
         }
         //This spawns a Sniper
         if (Input.GetKeyDown(KeyCode.J))
         {
+            enemySpawnTransform = RandomSpawnPoint();
             SpawnSniper();
         }
         //This spawns Leeroy
         if (Input.GetKeyDown(KeyCode.K))
         {
+            enemySpawnTransform = RandomSpawnPoint();
             SpawnLeeroy();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SimulateStart();
+        }
+
+        if (players.Count == 0)
+        {
+            SpawnPlayer();
         }
 
 
@@ -77,6 +112,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
+        playerSpawnTransform = RandomSpawnPoint();
+    
        // Spawn the Player Controller at (0,0,0) with rotation
        GameObject newPlayerObj = Instantiate(playerControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
@@ -93,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnGoomba()
     {
+        enemySpawnTransform = RandomSpawnPoint();
         // Spawn Goomba AI Controller at origin
         GameObject newGoombaObj = Instantiate(goombaControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
@@ -109,6 +147,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnGuard()
     {
+        enemySpawnTransform = RandomSpawnPoint();
         // Spawn Guard AI Controller at origin
         GameObject newGuardObj = Instantiate(guardControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
@@ -126,6 +165,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnSniper()
     {
+        enemySpawnTransform = RandomSpawnPoint();
         // Spawn Sniper AI Controller at origin
         GameObject newSniperObj = Instantiate(sniperControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
@@ -142,6 +182,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnLeeroy()
     {
+        enemySpawnTransform = RandomSpawnPoint();
         // Spawn Leeroy AI Controller at origin
         GameObject newLeeroyObj = Instantiate(leeroyControllerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 
@@ -154,5 +195,10 @@ public class GameManager : MonoBehaviour
 
         //I think I still have a roll of flex tape around here somewhere...
         newController.pawn = newPawn;
+    }
+    public Transform RandomSpawnPoint()
+    {
+        int randomIndex = Random.Range(0, spawnLocations.Count);
+        return spawnLocations[randomIndex];
     }
 }

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1860471014034529778}
   - component: {fileID: 7929108957096649013}
   - component: {fileID: -7924205080786015903}
+  - component: {fileID: 9088859602337737934}
   m_Layer: 0
   m_Name: PlayerTank
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 1517943243865103470}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.1640987, y: 0.572, z: -4.6126347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1860471014727060089}
@@ -108,7 +109,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1860471014034529782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -159,8 +160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc852f638b0e20743af9978aa50c3a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  turnSpeed: 100
+  moveSpeed: 5
+  maxMoveSpeed: 0
+  turnSpeed: 150
   bulletPrefab: {fileID: 2027048133119433576, guid: 1c59b49242b6a0c4e9d6beff28b3962d, type: 3}
   shooter: {fileID: 0}
   mover: {fileID: 0}
@@ -198,6 +200,19 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   myPawn: {fileID: 1860471014034529778}
+  myController: {fileID: 0}
+--- !u!114 &9088859602337737934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517943243865103470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59844a24e17495c49b59266ed7cf8c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1860471014727060094
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class AIController_Guard : AIController
     {
         //Starts by idling
         ChangeState(AIStates.Idle);
+        GameManager.instance.enemies.Add(this);
     }
 
     // Update is called once per frame
@@ -17,6 +18,10 @@ public class AIController_Guard : AIController
         if (pawn != null)
         {
             MakeDecisions();
+        }
+        else
+        {
+            Destroy(this);
         }
         
     }
@@ -73,5 +78,9 @@ public class AIController_Guard : AIController
                 break;
 
         }
+    }
+    public void OnDestroy()
+    {
+        GameManager.instance.enemies.Remove(this);
     }
 }
